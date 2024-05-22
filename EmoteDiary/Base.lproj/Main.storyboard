@@ -183,6 +183,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="apg-4i-jeS" firstAttribute="width" secondItem="2PI-qk-wHY" secondAttribute="width" id="1da-JI-AgO"/>
                             <constraint firstItem="xu8-yN-IE8" firstAttribute="top" secondItem="RJa-I2-9s0" secondAttribute="bottom" constant="8" id="2Mi-y6-gpb"/>

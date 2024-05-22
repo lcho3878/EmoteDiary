@@ -69,6 +69,21 @@ class MainViewController: UIViewController {
         saveData()
     }
     
+    @objc private func buttonLongTapped(_ sender: UILongPressGestureRecognizer) {
+        guard let index = sender.view?.tag else { return }
+        let buttonName = buttonNames[index]
+        let alert = UIAlertController(title: nil, message: "\(buttonName)을 초기화 하겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "초기화", style: .destructive) { [self] _ in
+            counts[buttonName] = 0
+            labelList[index].text = "\(buttonName) \(0)"
+            saveData()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
     private func settingList() {
         labelList = [label1, label2, label3, label4, label5, label6, label7, label8, label9]
         buttonList = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
@@ -83,6 +98,9 @@ class MainViewController: UIViewController {
     private func settingButton(_ i: Int, _ button: UIButton) {
         button.tag = i
         button.setImage(UIImage(named: "slime\(i+1)"), for: .normal)
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(buttonLongTapped))
+        longGesture.view?.tag = i
+        button.addGestureRecognizer(longGesture)
         let buttonName = buttonNames[i]
         guard let count = counts[buttonName] else { return }
         labelList[i].text = "\(buttonName) \(count)"
