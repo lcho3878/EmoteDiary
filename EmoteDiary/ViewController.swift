@@ -56,13 +56,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        labelList = [label1, label2, label3, label4, label5, label6, label7, label8, label9]
-        buttonList = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
-        
-        for (index, button) in buttonList.enumerated() {
-            settingButton(index, button)
-        }
-
+        settingList()
+        settingButtons()
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -72,6 +67,17 @@ class MainViewController: UIViewController {
         guard let count = counts[buttonName] else { return }
         labelList[index].text = "\(buttonName) \(count)"
         saveData()
+    }
+    
+    private func settingList() {
+        labelList = [label1, label2, label3, label4, label5, label6, label7, label8, label9]
+        buttonList = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
+    }
+    
+    private func settingButtons() {
+        for (index, button) in buttonList.enumerated() {
+            settingButton(index, button)
+        }
     }
     
     private func settingButton(_ i: Int, _ button: UIButton) {
