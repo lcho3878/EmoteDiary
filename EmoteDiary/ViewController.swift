@@ -72,7 +72,7 @@ class MainViewController: UIViewController {
     @objc private func buttonLongTapped(_ sender: UILongPressGestureRecognizer) {
         guard let index = sender.view?.tag else { return }
         let buttonName = buttonNames[index]
-        let alert = UIAlertController(title: nil, message: "\(buttonName)을 초기화 하겠습니까?", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "\(buttonName)을/를 초기화 하겠습니까?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "초기화", style: .destructive) { [self] _ in
             counts[buttonName] = 0
             labelList[index].text = "\(buttonName) \(0)"
