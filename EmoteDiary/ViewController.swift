@@ -9,15 +9,25 @@ import UIKit
 
 class MainViewController: UIViewController {
 //    private var counts = Array(repeating: 0, count: 9)
-    private var counts = [["행복해", 0],
-                          ["사랑해", 0],
-                          ["좋아해", 0],
-                          ["당황해", 0],
-                          ["속상해", 0],
-                          ["우울해", 0],
-                          ["심심해", 0],
-                          ["짜증나", 0],
-                          ["열받아", 0],
+    private var buttonNames = ["행복해",
+                               "사랑해",
+                               "좋아해",
+                               "당황해",
+                               "속상해",
+                               "우울해",
+                               "심심해",
+                               "짜증나",
+                               "열받아",
+    ]
+    private var counts = ["행복해" :0,
+                          "사랑해": 0,
+                          "좋아해": 0,
+                          "당황해": 0,
+                          "속상해": 0,
+                          "우울해": 0,
+                          "심심해": 0,
+                          "짜증나": 0,
+                          "열받아": 0,
     ]
     private var buttonList: [UIButton] = []
     private var labelList: [UILabel] = []
@@ -56,17 +66,19 @@ class MainViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
-        counts[index][1] = counts[index][1] as! Int + 1
-
-        labelList[index].text = "\(counts[index][0]) \(counts[index][1])"
+        let buttonName = buttonNames[index]
+        counts[buttonName] = counts[buttonName, default: 0] + 1
+        guard let count = counts[buttonName] else { return }
+        labelList[index].text = "\(buttonName) \(count)"
+//        labelList[index].text = "\(counts[index]) \(counts[index][1])"
     }
     
     private func settingButton(_ i: Int, _ button: UIButton) {
         button.tag = i
         button.setImage(UIImage(named: "slime\(i+1)"), for: .normal)
-        let title = counts[i][0]
-        let count = counts[i][1]
-        labelList[i].text = "\(title) \(count)"
+        let buttonName = buttonNames[i]
+        guard let count = counts[buttonName] else { return }
+        labelList[i].text = "\(buttonName) \(count)"
         labelList[i].textAlignment = .center
     }
 
