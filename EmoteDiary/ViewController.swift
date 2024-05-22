@@ -55,6 +55,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         labelList = [label1, label2, label3, label4, label5, label6, label7, label8, label9]
         buttonList = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
         
@@ -70,7 +71,7 @@ class MainViewController: UIViewController {
         counts[buttonName] = counts[buttonName, default: 0] + 1
         guard let count = counts[buttonName] else { return }
         labelList[index].text = "\(buttonName) \(count)"
-//        labelList[index].text = "\(counts[index]) \(counts[index][1])"
+        saveData()
     }
     
     private func settingButton(_ i: Int, _ button: UIButton) {
@@ -81,6 +82,17 @@ class MainViewController: UIViewController {
         labelList[i].text = "\(buttonName) \(count)"
         labelList[i].textAlignment = .center
     }
+    
+    private func loadData() {
+        guard let data = UserDefaults.standard.dictionary(forKey: "counts") as? [String: Int] else { return }
+        counts = data
+    }
+    
+    private func saveData() {
+        UserDefaults.standard.set(counts, forKey: "counts")
+    }
+    
+    
 
 }
 
